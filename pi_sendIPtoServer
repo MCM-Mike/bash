@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# add crontab
+# PI sends internal and external IP to your Webserver 
+
+#change this
+URL=your-domain.com
+
+# external public ip
+public_IP=`dig +short myip.opendns.com @resolver1.opendns.com`
+private_IP=
+
+int_ip () {
+ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'
+}
+
+private_IP=$(int_ip)
+#echo $public_IP
+#echo $private_IP
+
+wget -q "http://$URL/piZero/public/$public_IP"
+wget -q "http://$URL/piZero/private/$private_IP"
+~                                                                                                                                                              
+~                                                                                                                                                              
+~           
