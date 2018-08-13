@@ -2,9 +2,13 @@
 
 # add crontab
 # PI sends internal and external IP to your Webserver 
+# to cronjob add PATH (see below)
 
 #change this
 URL=your-domain.com
+# add your homedir or folder to this
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
 
 # external public ip
 public_IP=`dig +short myip.opendns.com @resolver1.opendns.com`
