@@ -1,0 +1,19 @@
+#by mcm-mike
+#thank you to https://grinexplorer.net/
+#
+# check if your local grin server is behind an online GrinExplorer
+#
+
+
+
+# adjust path grin
+pathGRIN=/home/mcm/crypto/currency/
+
+localServerHeight=`$pathGRIN/grin client status |grep "Chain height:" | awk '{print $3}'`
+remoteServerHeight=`curl -s https://grin.merklepath.com/api/v1/supply | awk '{print $2}' | sed 's/,//g'`
+blockDiff=`expr $remoteServerHeight - $localServerHeight`
+ if [ $blockDiff = 0 ]; then
+        echo "up to date";
+    else
+        echo "$blockDiff Chain Heights behind";
+    fi
